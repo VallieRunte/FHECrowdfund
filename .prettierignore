@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build artifacts
+artifacts/
+cache/
+dist/
+build/
+
+# Coverage
+coverage/
+coverage.json
+
+# Deployment
+deployments/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
