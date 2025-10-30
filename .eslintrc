@@ -1,0 +1,85 @@
+module.exports = {
+  env: {
+    browser: false,
+    es2021: true,
+    mocha: true,
+    node: true,
+  },
+  plugins: ["@typescript-eslint", "security"],
+  extends: [
+    "eslint:recommended",
+    "plugin:security/recommended",
+    "plugin:node/recommended",
+    "prettier",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: "module",
+  },
+  rules: {
+    // Security rules
+    "security/detect-object-injection": "warn",
+    "security/detect-non-literal-regexp": "warn",
+    "security/detect-unsafe-regex": "error",
+    "security/detect-buffer-noassert": "error",
+    "security/detect-child-process": "warn",
+    "security/detect-disable-mustache-escape": "error",
+    "security/detect-eval-with-expression": "error",
+    "security/detect-no-csrf-before-method-override": "error",
+    "security/detect-non-literal-fs-filename": "warn",
+    "security/detect-non-literal-require": "warn",
+    "security/detect-possible-timing-attacks": "warn",
+    "security/detect-pseudoRandomBytes": "error",
+
+    // Node.js rules
+    "node/exports-style": ["error", "module.exports"],
+    "node/file-extension-in-import": ["error", "always"],
+    "node/prefer-global/buffer": ["error", "always"],
+    "node/prefer-global/console": ["error", "always"],
+    "node/prefer-global/process": ["error", "always"],
+    "node/prefer-global/url-search-params": ["error", "always"],
+    "node/prefer-global/url": ["error", "always"],
+    "node/prefer-promises/dns": "error",
+    "node/prefer-promises/fs": "error",
+    "node/no-unpublished-require": "off",
+    "node/no-missing-require": "off",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { ignores: ["modules"] },
+    ],
+
+    // General rules
+    "no-console": ["warn", { allow: ["warn", "error", "info"] }],
+    "no-unused-vars": [
+      "error",
+      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+    ],
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-new-func": "error",
+    "no-return-await": "error",
+    "require-await": "warn",
+    "eqeqeq": ["error", "always"],
+    "no-throw-literal": "error",
+  },
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "node/no-missing-import": "off",
+        "node/no-unsupported-features/es-syntax": "off",
+      },
+    },
+    {
+      files: ["test/**/*.js", "scripts/**/*.js"],
+      rules: {
+        "security/detect-non-literal-fs-filename": "off",
+        "no-console": "off",
+      },
+    },
+  ],
+};
