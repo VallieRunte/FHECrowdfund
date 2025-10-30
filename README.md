@@ -1,7 +1,5 @@
 # 🚀 Crowdfund Platform
 
-[![Tests](https://github.com/YOUR_ORG/crowdfund-platform/workflows/Tests/badge.svg)](https://github.com/YOUR_ORG/crowdfund-platform/actions)
-[![CodeQL](https://github.com/YOUR_ORG/crowdfund-platform/workflows/CodeQL%20Security%20Analysis/badge.svg)](https://github.com/YOUR_ORG/crowdfund-platform/actions)
 [![codecov](https://codecov.io/gh/YOUR_ORG/crowdfund-platform/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_ORG/crowdfund-platform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Solidity](https://img.shields.io/badge/solidity-0.8.24-blue)](https://docs.soliditylang.org/en/v0.8.24/)
@@ -9,7 +7,7 @@
 
 > **Privacy-preserving crowdfunding platform on Ethereum** - Enabling transparent campaign creation with secure smart contract automation for decentralized collective investment and community-driven projects.
 
-🌐 **[Live Demo](https://crowdfund-platform.vercel.app)** | 📹 **[Video Demo](https://youtu.be/demo)** | 📖 **[Documentation](./docs)** | 🔗 **[Sepolia Contract](https://sepolia.etherscan.io/address/0x...)**
+🌐 **[Live Demo](https://fhe-crowdfund.vercel.app/)** | 📹 **[Video Demo demo.mp4]** | 📖 **[Documentation](./docs)** | 🔗 **[Sepolia Contract](https://sepolia.etherscan.io/address/0x8eC52211B260EA1DAf06264Bcc7C95F24e84559e)**
 
 ---
 
@@ -682,7 +680,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy...
 ## 🔗 Links & Resources
 
 ### Official Links
-- **Live Demo**: [https://crowdfund-platform.vercel.app](https://crowdfund-platform.vercel.app)
+- **Live Demo**: [https://fhe-crowdfund.vercel.app/](https://fhe-crowdfund.vercel.app/)
 - **GitHub**: [https://github.com/YOUR_ORG/crowdfund-platform](https://github.com/YOUR_ORG/crowdfund-platform)
 - **Documentation**: [https://docs.crowdfund-platform.com](https://docs.crowdfund-platform.com)
 
