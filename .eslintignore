@@ -1,0 +1,11 @@
+node_modules/
+artifacts/
+cache/
+coverage/
+dist/
+build/
+deployments/
+typechain/
+typechain-types/
+*.config.js
+.eslintrc.js
