@@ -1,0 +1,17 @@
+{
+  "filter_paths": "node_modules|test|mock",
+  "solc_remaps": [
+    "@openzeppelin=node_modules/@openzeppelin"
+  ],
+  "detectors_to_exclude": "",
+  "exclude_informational": false,
+  "exclude_low": false,
+  "exclude_medium": false,
+  "exclude_high": false,
+  "exclude_optimization": false,
+  "disable_color": false,
+  "markdown_root": ".",
+  "checklist_limit": 10,
+  "show_ignored_findings": false,
+  "legacy_ast": false
+}
