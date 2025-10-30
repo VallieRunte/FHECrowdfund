@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Crowdfund - Confidential Collective Investment</title>
+    <meta name="description" content="Privacy Crowdfund: Confidential collective investment platform using FHE encryption. Fund projects with complete privacy protection.">
+    <meta name="keywords" content="privacy, crowdfunding, FHE, encryption, DeFi, Ethereum, confidential investment">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Privacy Crowdfund - Confidential Investment">
+    <meta property="og:description" content="Fund projects with complete privacy using FHE encryption technology">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy Crowdfund">
+    <meta name="twitter:description" content="Confidential Collective Investment Platform">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/ethers@6.13.0/dist/ethers.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .neon-border {
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        
+        .neon-glow {
+            text-shadow: 0 0 20px #00ffff;
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, #00ffff 0%, #0080ff 50%, #8000ff 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00ffff 0%, #0080ff 50%, #8000ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-cyber {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.6));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-cyber {
+            background: linear-gradient(45deg, #001a1a, #003333);
+            border: 1px solid #00ffff;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cyber:hover {
+            background: linear-gradient(45deg, #003333, #006666);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #0080ff, #8000ff);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #0099ff, #9900ff);
+            box-shadow: 0 0 30px rgba(0, 128, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen cyber-grid">
+    <!-- Navigation -->
+    <nav class="bg-black/80 backdrop-blur-md border-b border-cyan-500/30 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <div class="gradient-text text-2xl font-bold font-mono">🛡️ Privacy Crowdfund</div>
+                    <div class="hidden md:block text-sm text-cyan-400 font-mono">
+                        [ CONFIDENTIAL INVESTMENT ]
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <button onclick="showPage('crowdfunding')" class="text-gray-300 hover:text-cyan-400 transition-colors font-mono text-sm">
+                        CAMPAIGNS
+                    </button>
+                    <button onclick="showPage('dashboard')" class="text-gray-300 hover:text-cyan-400 transition-colors font-mono text-sm">
+                        MY PORTFOLIO
+                    </button>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div id="network-status" class="hidden md:flex items-center space-x-2">
+                        <div class="status-indicator bg-red-500"></div>
+                        <span class="text-xs text-gray-400 font-mono">DISCONNECTED</span>
+                    </div>
+                    <button id="wallet-button" onclick="connectWallet()" class="btn-cyber px-6 py-2 rounded-lg text-sm font-mono">
+                        CONNECT WALLET
+                    </button>
+                    <button onclick="testMetaMask()" class="btn-primary px-4 py-2 rounded-lg text-sm font-mono">
+                        TEST
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div id="main-content" class="min-h-screen">
+        
+        <!-- Landing Page -->
+        <div id="landing-page" class="page-content">
+            <!-- Hero Section -->
+            <div class="relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-blue-900/20 to-purple-900/20"></div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                    <div class="text-center">
+                        <div class="floating-element text-8xl mb-8">🛡️</div>
+                        <h1 class="text-6xl font-bold mb-6 fade-in">
+                            <span class="gradient-text">PRIVACY</span><span class="text-white"> CROWDFUND</span>
+                        </h1>
+                        <p class="text-xl text-cyan-200 mb-8 max-w-4xl mx-auto font-mono fade-in">
+                            [ CONFIDENTIAL COLLECTIVE INVESTMENT PLATFORM ]<br/>
+                            Powered by Fully Homomorphic Encryption Technology
+                        </p>
+                        
+                        <!-- Feature Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto fade-in">
+                            <div class="card-cyber rounded-lg p-6">
+                                <div class="text-4xl mb-3">🔒</div>
+                                <h3 class="text-lg font-semibold mb-2 gradient-text font-mono">CONFIDENTIAL FUNDING</h3>
+                                <p class="text-gray-300 text-sm">All investment amounts protected by FHE encryption</p>
+                            </div>
+                            <div class="card-cyber rounded-lg p-6">
+                                <div class="text-4xl mb-3">🏦</div>
+                                <h3 class="text-lg font-semibold mb-2 gradient-text font-mono">COLLECTIVE INVESTMENT</h3>
+                                <p class="text-gray-300 text-sm">Pool funds privately for collaborative projects</p>
+                            </div>
+                            <div class="card-cyber rounded-lg p-6">
+                                <div class="text-4xl mb-3">⚡</div>
+                                <h3 class="text-lg font-semibold mb-2 gradient-text font-mono">ETHEREUM READY</h3>
+                                <p class="text-gray-300 text-sm">MetaMask integration with live blockchain</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in">
+                            <button onclick="showPage('crowdfunding')" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg font-mono transform hover:scale-105 transition-transform">
+                                💰 BROWSE ACTIVE FUNDS
+                            </button>
+                            <button onclick="showPage('dashboard')" class="btn-cyber px-8 py-4 rounded-lg font-bold text-lg font-mono transform hover:scale-105 transition-transform">
+                                📊 VIEW PORTFOLIO
+                            </button>
+                        </div>
+                        <div class="text-center mt-4 fade-in">
+                            <p class="text-gray-400 text-sm font-mono">
+                                🔒 6 Active Investment Funds Available | 📈 All Contributions Encrypted | 🦊 MetaMask Ready
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Specs -->
+            <div class="bg-black/50 border-t border-cyan-500/30">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4 gradient-text font-mono">[ PRIVACY SPECIFICATIONS ]</h2>
+                        <p class="text-gray-400 max-w-3xl mx-auto font-mono">
+                            Advanced privacy-preserving crowdfunding infrastructure built on Ethereum with FHE encryption
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl mb-3">⚡</div>
+                            <h4 class="font-semibold mb-2 text-cyan-400 font-mono">SUB-SECOND ENCRYPTION</h4>
+                            <p class="text-sm text-gray-400">Client-side FHE operations</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl mb-3">🔐</div>
+                            <h4 class="font-semibold mb-2 text-cyan-400 font-mono">CONFIDENTIAL VALIDATION</h4>
+                            <p class="text-sm text-gray-400">Verify contributions without revealing amounts</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl mb-3">🌐</div>
+                            <h4 class="font-semibold mb-2 text-cyan-400 font-mono">ETHEREUM COMPATIBLE</h4>
+                            <p class="text-sm text-gray-400">Works with MetaMask & Web3</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl mb-3">🛡️</div>
+                            <h4 class="font-semibold mb-2 text-cyan-400 font-mono">BATTLE-TESTED</h4>
+                            <p class="text-sm text-gray-400">Comprehensive security audits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crowdfunding Page -->
+        <div id="crowdfunding-page" class="page-content hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold mb-4 gradient-text font-mono">ACTIVE INVESTMENT FUNDS</h1>
+                    <p class="text-gray-400 font-mono mb-2">6 diversified investment opportunities with complete privacy protection using FHE encryption</p>
+                    <div class="flex items-center justify-center space-x-6 text-sm font-mono">
+                        <span class="text-green-400">✅ Ready for Investment</span>
+                        <span class="text-cyan-400">🔒 Full Privacy Protection</span>
+                        <span class="text-yellow-400">🦊 MetaMask Compatible</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Create Campaign Panel -->
+                    <div class="lg:col-span-1">
+                        <div class="card-cyber rounded-lg p-6 mb-6">
+                            <h3 class="text-xl font-bold mb-4 gradient-text font-mono">CREATE FUND</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-mono text-cyan-400 mb-2">FUND TITLE</label>
+                                    <input id="project-name" type="text" class="w-full bg-gray-800 border border-cyan-500/30 rounded px-3 py-2 text-white font-mono text-sm" placeholder="Enter fund title">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-mono text-cyan-400 mb-2">TARGET AMOUNT (ETH)</label>
+                                    <input id="funding-goal" type="number" step="0.001" class="w-full bg-gray-800 border border-cyan-500/30 rounded px-3 py-2 text-white font-mono text-sm" placeholder="0.000">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-mono text-cyan-400 mb-2">DURATION (DAYS)</label>
+                                    <input id="campaign-duration" type="number" min="1" max="365" class="w-full bg-gray-800 border border-cyan-500/30 rounded px-3 py-2 text-white font-mono text-sm" placeholder="30">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-mono text-cyan-400 mb-2">DESCRIPTION</label>
+                                    <textarea id="project-description" rows="4" class="w-full bg-gray-800 border border-cyan-500/30 rounded px-3 py-2 text-white font-mono text-sm resize-none" placeholder="Describe your investment fund purpose and goals"></textarea>
+                                </div>
+                                
+                                <button onclick="createCampaign()" class="w-full btn-primary py-3 rounded-lg font-bold font-mono">
+                                    🏦 CREATE FUND
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Funds -->
+                    <div class="lg:col-span-2">
+                        <div class="card-cyber rounded-lg p-6">
+                            <h3 class="text-xl font-bold mb-4 gradient-text font-mono">ACTIVE FUNDS</h3>
+                            <div id="campaigns-list" class="space-y-4">
+                                <div class="text-center py-8 text-gray-400 font-mono">
+                                    Loading investment funds...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page-content hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold mb-4 gradient-text font-mono">MY PORTFOLIO</h1>
+                    <p class="text-gray-400 font-mono">Monitor your created funds and investment positions</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- My Created Funds -->
+                    <div class="card-cyber rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 gradient-text font-mono">MY CREATED FUNDS</h3>
+                        <div id="my-campaigns" class="space-y-4">
+                            <div class="text-center py-8 text-gray-400 font-mono">
+                                No funds created yet
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- My Investments -->
+                    <div class="card-cyber rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-4 gradient-text font-mono">MY INVESTMENTS</h3>
+                        <div id="my-investments" class="space-y-4">
+                            <div class="text-center py-8 text-gray-400 font-mono">
+                                No investments found
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-cyan-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-gray-400 text-sm font-mono">
+                    © 2024 Privacy Crowdfund - Confidential Collective Investment Platform
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://sepolia.etherscan.io/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-mono">
+                        EXPLORER
+                    </a>
+                    <a href="https://sepoliafaucet.com/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-mono">
+                        FAUCET
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden">
+        <div class="flex items-center justify-center h-full">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-32 w-32 border-b-2 border-cyan-400 mb-4"></div>
+                <div class="text-xl font-mono gradient-text">PROCESSING...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app-new.js?v=transaction-fixed-2024"></script>
+</body>
+</html>
