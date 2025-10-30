@@ -1,0 +1,33 @@
+verbose-report: true
+# Mythril Configuration for Smart Contract Security Analysis
+
+# Analysis settings
+max-depth: 22
+solver-timeout: 10000
+create-timeout: 10
+execution-timeout: 600
+transaction-count: 3
+
+# Output settings
+output: text
+verbose-report: true
+
+# Strategy settings
+strategy: bfs
+
+# Detection modules
+modules:
+  - transaction-order-dependence
+  - reentrancy
+  - delegatecall
+  - integer-overflow
+  - assertion-failure
+  - unprotected-selfdestruct
+  - unprotected-ether-withdrawal
+  - state-change-external-calls
+
+# Files to exclude
+exclude:
+  - test/
+  - node_modules/
+  - mock/
