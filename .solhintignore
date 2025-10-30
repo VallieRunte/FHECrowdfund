@@ -1,0 +1,15 @@
+# Build artifacts
+artifacts/
+cache/
+node_modules/
+
+# Dependencies
+**/node_modules
+
+# Test files
+test/
+scripts/
+
+# Third-party contracts
+contracts/interfaces/
+contracts/libraries/external/
